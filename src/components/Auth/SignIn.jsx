@@ -1,8 +1,27 @@
+import axios from "axios";
+import { useState } from "react";
 import { BsLayoutTextSidebar } from "react-icons/bs";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { Container, Forms, Logo } from "./SignUpStyles";
 
 export default function SignIn () {
+    const [authUser,setAuthUser] = useState({
+        email:'',
+        password:''
+    })
+    const navigate = useNavigate()
+
+    function authenticateUser (e) {
+        e.preventDefault()
+        const URL = 'https://projeto20-repoprovas-back-end.herokuapp.com'
+        const promise = axios.post(URL+'/signin',authUser)
+        promise.then(res=>{
+            const token = res.data.token
+            localStorage.setItem('token',token)
+            navigate('/homepage')
+        })
+    }
+
     return (
         <Container>
             <Logo>
@@ -13,12 +32,12 @@ export default function SignIn () {
             </Logo>
             <Forms>
                 <h2>Login</h2>
-                <form>
-                    <input type='email' placeholder="E-mail" />
-                    <input type='password' placeholder="Senha" />
+                <form onSubmit={authenticateUser}>
+                    <input type='email' placeholder="E-mail"  value={authUser.email} onChange={(e)=>{setAuthUser({...authUser,email:e.target.value})}} />
+                    <input type='password' placeholder="Senha"  value={authUser.password} onChange={(e)=>{setAuthUser({...authUser,password:e.target.value})}} />
                     <div>
                     <Link to='/'>Não possuo cadastro</Link>
-                    <button> ENTRAR </button>
+                    <button type='submit'> ENTRAR </button>
                     </div>
                 </form>
             </Forms>

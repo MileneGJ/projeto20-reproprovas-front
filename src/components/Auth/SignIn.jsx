@@ -2,7 +2,7 @@ import axios from "axios";
 import { useState } from "react";
 import { BsLayoutTextSidebar } from "react-icons/bs";
 import { Link, useNavigate } from "react-router-dom";
-import { Container, Forms, Logo } from "./SignUpStyles";
+import { ButtonStyled, Container, Forms, Logo } from "./SignUpStyles";
 
 export default function SignIn () {
     const [authUser,setAuthUser] = useState({
@@ -37,7 +37,7 @@ export default function SignIn () {
                     <input type='password' placeholder="Senha"  value={authUser.password} onChange={(e)=>{setAuthUser({...authUser,password:e.target.value})}} />
                     <div>
                     <Link to='/'>Não possuo cadastro</Link>
-                    <button type='submit'> ENTRAR </button>
+                    <ButtonStyled type='submit'> ENTRAR </ButtonStyled>
                     </div>
                 </form>
             </Forms>

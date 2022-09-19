@@ -1,5 +1,5 @@
 import { Link, useNavigate } from "react-router-dom";
-import { Container, Forms, Logo } from "./SignUpStyles";
+import { ButtonStyled, Container, Forms, Logo } from "./SignUpStyles";
 import {BsLayoutTextSidebar} from 'react-icons/bs'
 import axios from 'axios'
 import { useState } from "react";
@@ -41,7 +41,7 @@ export default function SignUp () {
                     <input type='password' placeholder="Confirme sua senha" value={newUser.confirmPassword} onChange={(e)=>{setNewUser({...newUser,confirmPassword:e.target.value})}} />
                     <div>
                     <Link to='/signin'>Já possuo cadastro</Link>
-                    <button type='submit'> CADASTRAR </button>
+                    <ButtonStyled type='submit'> CADASTRAR </ButtonStyled>
                     </div>
                 </form>
             </Forms>

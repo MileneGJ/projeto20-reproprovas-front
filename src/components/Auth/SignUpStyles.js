@@ -60,22 +60,23 @@ div{
     align-items:center;
     width:100%;
     justify-content:space-between;
-    button{
-        background-color:#1976D2;
-        border:none;
-        border-radius:5px;
-        color:#FFFFFF;
-        width:120px;
-        height:36px;
-        font-size:14px;
-        font-weight:500;
-    }
 }
+`
+const ButtonStyled = styled.button`
+background-color:#1976D2;
+border:none;
+border-radius:5px;
+color:#FFFFFF;
+width:120px;
+height:36px;
+font-size:14px;
+font-weight:500;
 `
 
 export {
     Container,
     Logo,
-    Forms
+    Forms,
+    ButtonStyled
 }
 

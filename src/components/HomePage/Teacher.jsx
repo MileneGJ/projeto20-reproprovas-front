@@ -4,11 +4,11 @@ import { IoChevronDown, IoChevronUp } from 'react-icons/io5'
 import { ListSpan } from './TermStyle'
 import Test from './Test'
 
-export default function Discipline({ id, termId, name }) {
+export default function Teacher({ id, name }) {
     const [testsList, setTestsList] = useState(null)
     const [isOpen, setIsOpen] = useState(false)
 
-    function openDiscipline(id, termId) {
+    function openTeacher(id) {
         if (isOpen) {
             setIsOpen(false)
         } else {
@@ -20,8 +20,10 @@ export default function Discipline({ id, termId, name }) {
                     Authorization: `Bearer ${token}`
                 }
             }
-            const promise = axios.get(URL + `/tests/${termId}/${id}`, config)
-            promise.then(res => setTestsList(res.data))
+            const promise = axios.get(URL + `/tests/${id}`, config)
+            promise.then(res => {
+                console.log(res.data)
+                setTestsList(res.data)})
             promise.catch(error => {
                 setIsOpen(false)
                 alert(error.response.data)
@@ -32,7 +34,7 @@ export default function Discipline({ id, termId, name }) {
     return (
         <>
             <ListSpan style={{ padding: '0 15px' }}
-                onClick={() => openDiscipline(id, termId)}>
+                onClick={()=>openTeacher(id)}>
                 <h2>
                     {name}
                 </h2>
@@ -46,9 +48,9 @@ export default function Discipline({ id, termId, name }) {
                             pdfUrl={t.pdfUrl}
                             name={t.name}
                             categoryName={t.categories.name}
-                            teacherName={t.teachersDisciplines.teachers.name}
+                            detailName={t.teachersDisciplines.disciplines.name}
                         />)
-                    : <p>Não há testes desta disciplina a serem exibidos</p> : null}
+                    : <p>Não há testes deste(a) instrutor(a) a serem exibidos</p> : null}
         </>
     )
 }

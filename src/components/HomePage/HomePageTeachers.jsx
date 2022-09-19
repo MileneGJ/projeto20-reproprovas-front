@@ -4,10 +4,11 @@ import { useNavigate } from "react-router-dom";
 import { ButtonStyled } from "../Auth/SignUpStyles";
 import Header from "../Layout/Header";
 import { MainContainer, Options, TestList } from "./HomePageStyles";
+import Teacher from "./Teacher";
 import Term from "./Term";
 
-export default function HomePage() {
-    const [termsList, setTermsList] = useState(null)
+export default function HomePageTeachers() {
+    const [teachersList, setTeachersList] = useState(null)
     const navigate = useNavigate()
 
     useEffect(() => {
@@ -21,9 +22,9 @@ export default function HomePage() {
                     Authorization: `Bearer ${token}`
                 }
             }
-            const promise = axios.get(URL + '/terms', config)
+            const promise = axios.get(URL + '/teachers', config)
             promise.then(res => {
-                setTermsList(res.data)
+                setTeachersList(res.data)
             })
             promise.catch(error => alert(error.response.data))
         }
@@ -33,16 +34,16 @@ export default function HomePage() {
         <MainContainer>
             <Header />
             <Options>
-                <ButtonStyled pressed="on" onClick={()=>navigate('/homepage')}>DISCIPLINAS</ButtonStyled>
-                <ButtonStyled pressed="off" onClick={()=>navigate('/by-teacher')}>PESSOA INSTRUTORA</ButtonStyled>
+                <ButtonStyled pressed="off" onClick={()=>navigate('/homepage')}>DISCIPLINAS</ButtonStyled>
+                <ButtonStyled pressed="on" onClick={()=>navigate('/by-teacher')}>PESSOA INSTRUTORA</ButtonStyled>
                 <ButtonStyled pressed="off" onClick={()=>navigate('/create-test')}>ADICIONAR PROVA</ButtonStyled>
             </Options>
             <TestList>
-                {termsList ?
-                    termsList.map((t, index) => <Term
+                {teachersList ?
+                    teachersList.map((t, index) => <Teacher
                         key={index}
                         id={t.id}
-                        number={t.number}
+                        name={t.name}
                     />)
                     :
                     'Carregando...'

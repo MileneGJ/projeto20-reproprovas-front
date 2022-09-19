@@ -9,6 +9,9 @@ export default function Term({ id, number }) {
     const [isOpen, setIsOpen] = useState(false)
 
         function openTerm(id) {
+            if (isOpen) {
+                setIsOpen(false)
+            } else {
             setIsOpen(true)
             const URL = 'https://projeto20-repoprovas-back-end.herokuapp.com'
             const token = localStorage.getItem('token')
@@ -22,23 +25,27 @@ export default function Term({ id, number }) {
         promise.catch(error => {
             setIsOpen(false)
             alert(error.response.data)})
+        }
     }
         return (
             <>
                 <ListSpan onClick={() => openTerm(id)}>
-                    <h3>
+                    <h2>
                         {`${number}° Período`}
-                    </h3>
+                    </h2>
                     {isOpen?<IoChevronUp />:<IoChevronDown />}
                 </ListSpan>
-                {disciplinesList?disciplinesList.map((d,index)=>
+                {isOpen&&disciplinesList?
+                disciplinesList.length>0?
+                disciplinesList.map((d,index)=>
                 <Discipline 
                 key={index}
                 id={d.id}
                 termId={id}
                 name={d.name}
                 />)
-                :null}
+                :<p>Não há disciplinas deste período a serem exibidas</p>
+            :null}
             </>
         )
     }

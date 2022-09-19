@@ -37,7 +37,7 @@ export default function SignIn () {
                     <input type='password' placeholder="Senha"  value={authUser.password} onChange={(e)=>{setAuthUser({...authUser,password:e.target.value})}} />
                     <div>
                     <Link to='/'>Não possuo cadastro</Link>
-                    <ButtonStyled type='submit'> ENTRAR </ButtonStyled>
+                    <ButtonStyled pressed="on" type='submit'> ENTRAR </ButtonStyled>
                     </div>
                 </form>
             </Forms>

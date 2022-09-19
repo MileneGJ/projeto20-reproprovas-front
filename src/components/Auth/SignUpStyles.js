@@ -43,8 +43,10 @@ h2{
     font-size:24px;
     margin:30px 0;
 }
-input{
-    height:38px;
+input, select {
+    width:100%;
+    background-color:#FFFFFF;
+    height:58px;
     font-size:16px;
     color:#000000;
     border:1px solid #C4C4C4;
@@ -52,7 +54,7 @@ input{
     margin:8px 0;
     width:400px;
     font-family: 'Poppins', sans-serif;
-    padding:10px;
+    padding:0 10px;
 }
 div{
     padding:10px 0;
@@ -63,14 +65,15 @@ div{
 }
 `
 const ButtonStyled = styled.button`
-background-color:#1976D2;
 border:none;
 border-radius:5px;
-color:#FFFFFF;
 width:120px;
 height:36px;
 font-size:14px;
 font-weight:500;
+color:${({pressed})=>pressed==='on'?'#FFFFFF':'#1976D2'};
+background-color:${({pressed})=>pressed==='on'?'#1976D2':'#FFFFFF'};
+border:${({pressed})=>pressed==='on'?'none':'1px solid #1976D2'};
 `
 
 export {

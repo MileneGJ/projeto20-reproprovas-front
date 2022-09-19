@@ -41,7 +41,7 @@ export default function SignUp () {
                     <input type='password' placeholder="Confirme sua senha" value={newUser.confirmPassword} onChange={(e)=>{setNewUser({...newUser,confirmPassword:e.target.value})}} />
                     <div>
                     <Link to='/signin'>Já possuo cadastro</Link>
-                    <ButtonStyled type='submit'> CADASTRAR </ButtonStyled>
+                    <ButtonStyled pressed="on" type='submit'> CADASTRAR </ButtonStyled>
                     </div>
                 </form>
             </Forms>
